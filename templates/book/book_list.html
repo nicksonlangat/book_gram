@@ -1,0 +1,20 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+<a class='btn pull-right btn-theme02 btn-xs centered ' href="{% url 'create' %}"><i class="fa fa-plus"></i> </a><br>
+{% for book in object_list %}
+   <article class="media content-section">
+   	<img class="rounded-circle article-img" src="{{book.cover.url}}" >
+  <div class="media-body">
+    <div class="article-metadata">
+    	<h2><a class ='article-title' href="#">{{ book.book_title }}</a></h2>
+      <a href ='#' >Synopsis by:{{ book.created_by}}</a>
+      <small class="text-muted">
+      	{{ book.posted_on|timesince}} Ago</small>
+    </div>
+    <p class="article-content">{{ book.synopsis | slice:":80" }}... </p>
+    <a href="{{ book.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+  </div>
+</article>
+{% endfor %}
+{% include 'includes/paginate.html' %}
+{% endblock %}

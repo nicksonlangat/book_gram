@@ -1,0 +1,20 @@
+{% extends 'includes/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+<div class="">
+    <h3>Delete Book</h3>
+    <h4>Are you sure you want to delete - <b>{{ object.book_title }}</b></h4>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <button type="submit" class="btn btn-outline-danger">yes, delete</button>
+        <a href="{{ object.get_absolute_url }}" class="btn btn-secondary">cancel</a>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'includes/base.html' %}
+{% load crispy_forms_tags %} 
+
+{% block content %}
+
+<div class="container">
+    <h3>{{ object.book_title }}</h3>
+    <p><i class="fa fa-pencil"></i>: <b>{{ object.book_author }}  </b><i class="fa fa-eye"></i> {{ object.view_count }}</p>
+                <img   width="150" src="{{ object.cover.url }}" alt="">
+                <p><b>Synopsis</b></p>
+                <p>{{book.synopsis}}</p>
+        <a class="btn btn-theme" href="">Buy Book</a>
+        
+        <div class="col-7">
+            <!--Update and Delete-->
+            {% if object.created_by == user or user.is_superuser%}
+            <div class="float-right">                       
+                <a href="{% url 'update' object.id %}" class="btn btn-theme02 pull-left  btn-xs">update</a>
+                <a href="{% url 'delete' object.pk %}" class="btn btn-theme04 pull-right btn-xs">delete</a>
+            </div>
+            {% endif %}            
+        </div>
+    </div>
+</div>
+{% if user.is_authenticated %} 
+<div class="mt-4 ">
+    <form class="col-lg-10" action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }} 
+        <button class="btn btn-theme" type="submit">submit</button>
+    </form>
+</div>
+<hr>
+	{% else %} 
+	<p class ='alert alert-info' > To leave your review, kindly login or register for an account. It's absolutely free. </p>
+	{% endif %} 
+	<h4 class="centered mt">Book Reviews ( {{ object.get_review.count }} )</h4>
+            <!-- First Activity -->
+                {% for review in object.get_review %}
+            <div class="desc">
+              <div class="thumb">
+                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+              </div>
+              <div class="details">
+                <p>
+                  <muted>{{ review.timestamp|timesince}} ago</muted>
+                  <br/>
+              <a href="#">{{ review.author }}</a> <br/>{{ review.content }}
+                </p>
+              </div>
+            </div>
+                {% endfor %}
+{% endblock %}

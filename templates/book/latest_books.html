@@ -1,0 +1,23 @@
+<div class="card my-4">
+          <h5 class="card-header">Latest Synopses</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class=" mb-0">
+                    {%	for	book	in	latest_books	%}
+
+                             
+                    
+                  <li>
+                    <a	href="{{	book.get_absolute_url	}}">{{	book.title	}}</a>
+
+                  </li>
+                       
+                  {%	endfor	%}
+
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>

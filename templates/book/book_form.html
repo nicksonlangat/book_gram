@@ -1,0 +1,12 @@
+{% extends 'includes/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="">
+    <h3> New Synopsis</h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class=" btn btn-theme">Post</button>
+    </form>
+</div>
+{% endblock %}
