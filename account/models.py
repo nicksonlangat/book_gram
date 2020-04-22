@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to ="users/%Y/%m",)
+	#image = models.ImageField(upload_to ="users/%Y/%m",)
 	location = models.CharField(max_length =60, blank=True)
 
 	def __str__(self):
