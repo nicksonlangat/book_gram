@@ -9,7 +9,7 @@ from .utils import unique_slug_generator
 class Book(models.Model):
     created_by      =   models.ForeignKey(User, on_delete=models.PROTECT)
     book_title      =   models.CharField(max_length=68)
-    #cover           =   models.ImageField(upload_to="cover/%Y/%m", null=True)
+    cover           =   models.ImageField(upload_to="cover/%Y/%m", null=True)
     book_author     =   models.CharField(max_length=40)
     view_count      =   models.PositiveIntegerField(default=0)
     posted_on       =   models.DateTimeField(auto_now_add=True, null=True)
